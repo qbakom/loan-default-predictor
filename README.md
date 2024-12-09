@@ -1,7 +1,7 @@
 # Projekt - Wstęp do analizy danych i uczenia maszynowego
 
 ### Zespoły w 1 etapie
-Zespol numer 1:
+#### Zespol numer 1:
 
 ---> Jolanta Jakóbowska
 
@@ -9,7 +9,7 @@ Zespol numer 1:
 
 ---> Bartek Ząbkowski
 
-Zespol numer 2:
+#### Zespol numer 2:
 
 ---> Ola Kukuła
 
@@ -18,7 +18,7 @@ Zespol numer 2:
 ---> Basia Gawlik
 
 
-Zespol numer 3:
+#### Zespol numer 3:
 
 ---> Piotr Cymoniuk
 
@@ -29,7 +29,7 @@ Zespol numer 3:
 ---> Aleksandra Sutyniec
 
 
-Zespol numer 4:
+#### Zespol numer 4:
 
 ---> Joanna Aszklar
 
@@ -39,7 +39,10 @@ Zespol numer 4:
 
 ---> ??? (do uzupelnienia)
 
-Zespol numer 5:
+#### Zespol numer 5:
+
 ---> Huber Michalski
+
 ---> Michał Morzuch
+
 ---> Michał Glinka
