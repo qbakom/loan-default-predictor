@@ -1,1 +1,4 @@
-# ML_intro_24-25
+# Projekt - Wstęp do analizy danych i uczenia maszynowego
+
+### Zespoły w 1 etapie
+-
