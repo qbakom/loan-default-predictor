@@ -1,7 +1,10 @@
 # Projekt - Wstęp do analizy danych i uczenia maszynowego
 
+## Etap 1 - EDA
+
 ### Zespoły w 1 etapie
-#### Zespol numer 1:
+
+#### Zespol numer 1
 
 ---> Jolanta Jakóbowska
 
@@ -9,7 +12,7 @@
 
 ---> Bartek Ząbkowski
 
-#### Zespol numer 2:
+#### Zespol numer 2
 
 ---> Ola Kukuła
 
@@ -17,8 +20,7 @@
 
 ---> Basia Gawlik
 
-
-#### Zespol numer 3:
+#### Zespol numer 3
 
 ---> Piotr Cymoniuk
 
@@ -28,8 +30,7 @@
 
 ---> Aleksandra Sutyniec
 
-
-#### Zespol numer 4:
+#### Zespol numer 4
 
 ---> Joanna Aszklar
 
@@ -37,9 +38,9 @@
 
 ---> Emilia Latko
 
----> ??? (do uzupelnienia)
+---> Konrad Karpiuk
 
-#### Zespol numer 5:
+#### Zespol numer 5
 
 ---> Huber Michalski
 
