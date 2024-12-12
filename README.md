@@ -1,5 +1,7 @@
 # Projekt - Wstęp do analizy danych i uczenia maszynowego
 
+[Źródło danych](https://www.kaggle.com/datasets/yasserh/loan-default-dataset)
+
 ## Etap 1 - EDA
 
 ### Zespoły w 1 etapie
