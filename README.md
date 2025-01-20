@@ -2,50 +2,28 @@
 
 [Źródło danych](https://www.kaggle.com/datasets/yasserh/loan-default-dataset)
 
-## Etap 1 - EDA
-
-### Zespoły w 1 etapie
-
-#### Zespol numer 1
-
----> Jolanta Jakóbowska
-
----> Martyna Stankiewicz
-
----> Bartek Ząbkowski
-
-#### Zespol numer 2
-
----> Ola Kukuła
-
----> Jakub Rak
-
----> Basia Gawlik
-
-#### Zespol numer 3
-
----> Piotr Cymoniuk
-
----> Jan Szopa
-
----> Kuba Hałaczkiewicz
-
----> Aleksandra Sutyniec
-
-#### Zespol numer 4
-
----> Joanna Aszklar
-
----> Kacper Przywara
-
+## Zespoły w 2 etapie.
+### Zespół 1
+---> Michał Glinka
+---> Jakub Komosa
 ---> Emilia Latko
 
+### Zespół 2
+---> Kuba Hałaczkiewicz
+---> Joanna Aszklar
+---> Martyna Stankiewicz
+
+### Zespół 3
+---> Bartek Ząbkowski
+---> Basia Gawlik
+---> Jan Szopa
+
+### Zespół 4
+---> Kacper Przywara
+---> Jakub Rak
+---> Piotr Cymoniuk
+
+### Zespół 5
 ---> Konrad Karpiuk
-
-#### Zespol numer 5
-
----> Huber Michalski
-
+---> Ola Kukuła
 ---> Michał Morzuch
-
----> Michał Glinka
