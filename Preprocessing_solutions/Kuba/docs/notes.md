@@ -2,17 +2,17 @@
 
 ## 1. Wprowadzenie i Motywacja
 
-Głównym celem projektu było stworzenie gotowego do produkcji potoku przetwarzania danych wykorzystującego bibliotekę scikit-learn do przewidywania przypadków niespłacania kredytów. Wybraliśmy to podejście ze względu na jego praktyczność i możliwość zastosowania w rzeczywistych systemach bankowych.
+Głównym celem projektu było stworzenie gotowego do produkcji potoku przetwarzania danych wykorzystującego bibliotekę scikit-learn do przewidywania przypadków niespłacania kredytów. Wybrałem to podejście ze względu na jego praktyczność i możliwość zastosowania w rzeczywistych systemach bankowych.
 
 Problem niespłacania kredytów jest krytycznym zagadnieniem dla instytucji finansowych. Skuteczny model predykcyjny może znacząco zmniejszyć ryzyko udzielania kredytów osobom, które mogą mieć trudności ze spłatą, co przekłada się na wymierne korzyści finansowe.
 
-Naszym początkowym założeniem było stworzenie rozwiązania, które będzie nie tylko dokładne, ale również łatwe w utrzymaniu i skalowaniu w środowisku produkcyjnym.
+Moim początkowym założeniem było stworzenie rozwiązania, które będzie nie tylko dokładne, ale również łatwe w utrzymaniu i skalowaniu w środowisku produkcyjnym.
 
 ## 2. Pozyskiwanie i Eksploracja Danych
 
 ### 2.1 Ładowanie Danych
 
-Dane zostały wprowadzone do systemu poprzez umieszczenie pliku `Loan_Default.csv` w katalogu `data` projektu. Do wczytania danych wykorzystaliśmy bibliotekę pandas:
+Dane zostały wprowadzone do systemu poprzez umieszczenie pliku `Loan_Default.csv` w katalogu `data` projektu. Do wczytania danych wykorzystałem bibliotekę pandas:
 
 ```python
 import pandas as pd
@@ -24,7 +24,7 @@ df = pd.read_csv(data_path)
 
 ### 2.2 Eksploracyjna Analiza Danych (EDA)
 
-Przed przystąpieniem do budowy potoku przeprowadziliśmy szczegółową analizę danych:
+Przed przystąpieniem do budowy potoku przeprowadziłem szczegółową analizę danych:
 
 ```python
 print(df.info())
@@ -34,12 +34,12 @@ missing_values = df.isnull().sum()
 print(missing_values[missing_values > 0])
 ```
 
-Wygenerowaliśmy również szereg wizualizacji, w tym:
+Wygenerowałem również szereg wizualizacji, w tym:
 - Histogramy rozkładów zmiennych numerycznych
 - Wykresy słupkowe dla zmiennych kategorycznych
 - Mapy korelacji między zmiennymi
 
-W trakcie analizy napotkaliśmy kilka wyzwań związanych z jakością danych:
+W trakcie analizy napotkałem kilka wyzwań związanych z jakością danych:
 - Brakujące wartości w kilku kluczowych kolumnach
 - Skośne rozkłady niektórych zmiennych numerycznych
 - Niezbalansowany rozkład klasy docelowej (niespłacone kredyty stanowiły mniejszość)
@@ -48,7 +48,7 @@ W trakcie analizy napotkaliśmy kilka wyzwań związanych z jakością danych:
 
 ### 3.1 Automatyczne Wykrywanie Typów Zmiennych
 
-Zaimplementowaliśmy mechanizm automatycznego wykrywania zmiennych numerycznych i kategorycznych:
+Zaimplementowałem mechanizm automatycznego wykrywania zmiennych numerycznych i kategorycznych:
 
 ```python
 def identify_column_types(df):
@@ -59,7 +59,7 @@ def identify_column_types(df):
 
 ### 3.2 Obsługa Brakujących Wartości
 
-Do uzupełnienia brakujących wartości wykorzystaliśmy `SimpleImputer` z różnymi strategiami:
+Do uzupełnienia brakujących wartości wykorzystałem `SimpleImputer` z różnymi strategiami:
 
 ```python
 from sklearn.impute import SimpleImputer
@@ -70,7 +70,7 @@ cat_imputer = SimpleImputer(strategy='most_frequent')
 
 ### 3.3 Skalowanie i Kodowanie
 
-Zastosowaliśmy standardowe techniki przekształcania danych:
+Zastosowałem standardowe techniki przekształcania danych:
 
 ```python
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
@@ -83,7 +83,7 @@ Wybór tych metod był podyktowany ich skutecznością w praktyce oraz dobrą in
 
 ## 4. Niestandardowe Inżynieria Cech
 
-Zaprojektowaliśmy własne transformatory do tworzenia nowych cech, które mogłyby zwiększyć moc predykcyjną modelu:
+Zaprojektowałem własne transformatory do tworzenia nowych cech, które mogłyby zwiększyć moc predykcyjną modelu:
 
 ```python
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -102,13 +102,13 @@ class IncomeToLoanRatioTransformer(BaseEstimator, TransformerMixin):
         return X_copy
 ```
 
-Motywacją dla utworzenia tej cechy było założenie, że stosunek dochodu do kwoty kredytu jest istotnym wskaźnikiem zdolności kredytowej. Napotkaliśmy jednak problem z wartościami zerowymi w mianowniku, który rozwiązaliśmy przez zastąpienie ich małą wartością.
+Motywacją dla utworzenia tej cechy było moje założenie, że stosunek dochodu do kwoty kredytu jest istotnym wskaźnikiem zdolności kredytowej. Napotkałem jednak problem z wartościami zerowymi w mianowniku, który rozwiązałem przez zastąpienie ich małą wartością.
 
 ## 5. Integracja Modelu i Trenowanie
 
 ### 5.1 Budowa Potoku
 
-Zintegrowaliśmy wszystkie elementy przetwarzania danych i model predykcyjny w jednym potoku:
+Zintegrowałem wszystkie elementy przetwarzania danych i model predykcyjny w jednym potoku:
 
 ```python
 from sklearn.pipeline import Pipeline
@@ -139,7 +139,7 @@ full_pipeline = Pipeline([
 
 ### 5.2 Podział Danych i Trenowanie
 
-Zastosowaliśmy standardowy podział na zbiory treningowy i testowy:
+Zastosowałem standardowy podział na zbiory treningowy i testowy:
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -161,7 +161,7 @@ print(f"Confusion Matrix:\n{confusion_matrix(y_test, y_pred)}")
 
 ## 6. Zapisywanie i Ponowne Ładowanie Potoku
 
-Do zapisania i późniejszego załadowania potoku wykorzystaliśmy bibliotekę joblib:
+Do zapisania i późniejszego załadowania potoku wykorzystałem bibliotekę joblib:
 
 ```python
 import joblib
@@ -174,7 +174,7 @@ y_pred_loaded = loaded_pipeline.predict(X_test)
 print(f"Accuracy (loaded model): {accuracy_score(y_test, y_pred_loaded)}")
 ```
 
-Napotkaliśmy problemy z instalacją joblib w naszym środowisku Conda, które rozwiązaliśmy przez ręczną instalację:
+Napotkałem problemy z instalacją joblib w moim środowisku Conda, które rozwiązałem przez ręczną instalację:
 
 ```bash
 conda install -c anaconda joblib
@@ -184,7 +184,7 @@ conda install -c anaconda joblib
 
 ### 7.1 Strojenie Hiperparametrów
 
-Przeprowadziliśmy strojenie hiperparametrów za pomocą przeszukiwania siatki:
+Przeprowadziłem strojenie hiperparametrów za pomocą przeszukiwania siatki:
 
 ```python
 from sklearn.model_selection import GridSearchCV
@@ -203,7 +203,7 @@ print(f"Najlepszy wynik F1: {grid_search.best_score_}")
 
 ### 7.2 Radzenie Sobie z Niezbalansowaniem Klas
 
-Zastosowaliśmy technikę SMOTE do generowania syntetycznych przykładów klasy mniejszościowej:
+Zastosowałem technikę SMOTE do generowania syntetycznych przykładów klasy mniejszościowej:
 
 ```python
 from imblearn.over_sampling import SMOTE
@@ -225,17 +225,17 @@ print(f"F1 score z SMOTE: {f1_score(y_test, y_pred_imb)}")
 
 ### 8.1 Napotkane Problemy
 
-Podczas realizacji projektu napotkaliśmy szereg wyzwań:
+Podczas realizacji projektu napotkałem szereg wyzwań:
 
-1. **Niezgodność kolumn** - Mieliśmy trudności z zapewnieniem spójności kolumn między etapem preprocessingu a etapem trenowania. Problem rozwiązaliśmy przez dokładne projektowanie potoku.
+1. **Niezgodność kolumn** - Miałem trudności z zapewnieniem spójności kolumn między etapem preprocessingu a etapem trenowania. Problem rozwiązałem przez dokładne projektowanie potoku.
 
-2. **Parsowanie argumentów w środowisku notebooka** - Początkowo próbowaliśmy wykorzystać argparse do parametryzacji naszego potoku, co okazało się problematyczne w środowisku Jupyter. Przeszliśmy na wykorzystanie zmiennych konfiguracyjnych.
+2. **Parsowanie argumentów w środowisku notebooka** - Początkowo próbowałem wykorzystać argparse do parametryzacji mojego potoku, co okazało się problematyczne w środowisku Jupyter. Przeszedłem na wykorzystanie zmiennych konfiguracyjnych.
 
-3. **Wycieki danych** - Musieliśmy zachować ostrożność, aby transformacje danych (np. skalowanie) były zawsze wykonywane wewnątrz walidacji krzyżowej, a nie przed nią.
+3. **Wycieki danych** - Musiałem zachować ostrożność, aby transformacje danych (np. skalowanie) były zawsze wykonywane wewnątrz walidacji krzyżowej, a nie przed nią.
 
 ### 8.2 Ograniczenia Obecnego Podejścia
 
-Nasze rozwiązanie ma kilka istotnych ograniczeń:
+Moje rozwiązanie ma kilka istotnych ograniczeń:
 
 - Brak mechanizmu monitoringu dryfu danych w czasie rzeczywistym
 - Ograniczona obsługa nietypowych wartości wejściowych
@@ -243,21 +243,7 @@ Nasze rozwiązanie ma kilka istotnych ograniczeń:
 
 ### 8.3 Wnioski
 
-Z doświadczeń wyniesionych z projektu ustaliliśmy kilka kluczowych zasad do przyszłych projektów:
+Z doświadczeń wyniesionych z projektu ustaliłem kilka kluczowych zasad do przyszłych projektów:
 
-1. Zawsze projektować potoki danych z myślą o środowisku produkcyjnym
-2. Starannie testować zachowanie potoku dla różnych typów danych wejściowych
-3. Dokumentować każdy element potoku, aby ułatwić jego długoterminowe utrzymanie
-
-## 9. Podsumowanie
-
-Udało nam się zbudować kompleksowy potok przetwarzania danych do przewidywania niespłacania kredytów, który jest gotowy do wdrożenia w środowisku produkcyjnym. Nasze rozwiązanie łączy zaawansowane techniki preprocessingu, inżynierię cech i elastyczny model predykcyjny w jednym, spójnym przepływie.
-
-Uzyskaliśmy zadowalające wyniki w zakresie dokładności i precyzji modelu, choć widzimy potencjał do dalszych ulepszeń, szczególnie w zakresie obsługi niezbalansowanych danych i strojenia hiperparametrów.
-
-W przyszłości planujemy rozszerzyć funkcjonalność o mechanizmy monitoringu i wdrożyć rozwiązanie jako usługę REST API.
-
-## 10. Załączniki
-
-### Fragment dziennika potoku (preprocessing_pipeline.log)
-
+- Zawsze projektować potoki danych z myślą o środowisku produkcyjnym
+- Starannie testować zachowanie potoku dla różnych typów danych wejściowych
