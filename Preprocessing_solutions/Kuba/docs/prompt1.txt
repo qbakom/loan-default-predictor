@@ -1,0 +1,50 @@
+Analiza podejść stosowanych przez użytkowników na Kagglu
+
+    Zaawansowana inżynieria cech:
+    Użytkownicy często skupiają się na tworzeniu nowych cech, które oddają istotne zależności (np. stosunek kwoty kredytu do dochodu, obciążenie odsetkowe czy wskaźniki ryzyka). Przykładem jest podejście auduno, gdzie na podstawie uporządkowanych cech (np. f277, f521) generowano nowe wskaźniki – co przyczyniło się do osiągnięcia wysokiej pozycji konkursowej
+    github.com
+    .
+
+    Ensembling i stacking modeli:
+    Wielu uczestników stosuje kombinacje różnych modeli (Random Forest, Gradient Boosting, GLM czy modele liniowe) zarówno w klasyfikacji, jak i regresji. Często budują dwustopniowe systemy – najpierw klasyfikator, a następnie oddzielny model regresyjny do oszacowania strat, co zwiększa stabilność wyników
+    github.com
+    ,
+    kaggle.com
+    .
+
+    Optymalizacja i walidacja:
+    Powszechnie stosuje się GridSearchCV lub RandomizedSearchCV do optymalizacji hiperparametrów, a także walidację krzyżową, co pozwala uniknąć przeuczenia i lepiej ocenić generalizację modelu. Dodatkowo, techniki oversamplingu (np. SMOTE) są wykorzystywane do radzenia sobie z niezbalansowanymi zbiorami danych.
+
+    Diagnostyka i wizualizacja:
+    Narzędzia takie jak Yellowbrick są używane do wizualizacji learning curves, analizy macierzy pomyłek czy oceny wpływu poszczególnych cech. Pozwala to szybko wychwycić potencjalny wyciek danych lub nadmierne dopasowanie modelu.
+
+    AutoML:
+    Rozwiązania typu TPOT lub auto-sklearn pozwalają automatycznie przeszukać przestrzeń modeli i metod przetwarzania danych. Uczestnicy, korzystając z tych narzędzi, często znajdują alternatywne, wydajne rozwiązania, które później są modyfikowane ręcznie w celu uzyskania lepszych wyników.
+
+
+
+    Masz do dyspozycji aktualne pliki gc1.py i gc2.py, które implementują pipeline przetwarzania danych i modelowania dla predykcji niewypłacalności kredytowej (Loan Default) na podstawie datasetu z Kaggle (https://www.kaggle.com/datasets/yasserh/loan-default-dataset). Twoim zadaniem jest udoskonalić pipeline, uwzględniając najlepsze praktyki stosowane przez uczestników Kaggle. W szczególności:
+
+1. **Eksploracyjna analiza danych (EDA):**
+   - Rozbuduj analizę danych przy użyciu Pandas, matplotlib, seaborn (ewentualnie DataPrep), aby zidentyfikować brakujące dane, outliery i nietypowe rozkłady cech.
+   - Zadbaj o poprawny podział danych (treningowy/testowy) i usunięcie potencjalnych cech powodujących wyciek informacji (np. ID, cechy oznaczające porządek w danych).
+
+2. **Inżynieria cech:**
+   - Zaimplementuj lub rozbuduj CustomFeatureTransformer, aby tworzył nowe cechy takie jak: loan_to_income, interest_burden oraz wskaźnik ryzyka.
+   - Rozważ dodanie dodatkowych cech inspirowanych rozwiązaniami konkursowymi (np. oparte na analizie porządku zmiennych, podobnie jak f277, f521, itp.).
+
+3. **Budowa i optymalizacja pipeline’u przy użyciu Scikit-learn:**
+   - Użyj Pipeline i ColumnTransformer do kompleksowego przetwarzania danych (imputacja, skalowanie, kodowanie zmiennych kategorycznych).
+   - Wprowadź GridSearchCV (lub RandomizedSearchCV) dla optymalizacji hiperparametrów modeli (np. RandomForest, GradientBoosting, LogisticRegression).
+   - Zastosuj techniki radzenia sobie z niezbalansowanymi danymi, np. SMOTE.
+
+4. **Diagnostyka z Yellowbrick:**
+   - Zintegruj Yellowbrick do wizualizacji macierzy pomyłek, learning curves, analizy wpływu cech oraz oceny ryzyka nadmiernego dopasowania modelu.
+
+5. **Integracja AutoML:**
+   - Opcjonalnie dodaj możliwość wykorzystania narzędzi AutoML (np. TPOT lub auto-sklearn) do automatycznego wyszukiwania optymalnych kombinacji preprocessing’u, inżynierii cech oraz modeli, co umożliwi znalezienie alternatywnych, wydajnych rozwiązań.
+
+6. **Ensembling i stacking:**
+   - Jeśli to możliwe, rozważ stworzenie dwustopniowego podejścia, w którym pierwszy etap to klasyfikator (wykrywający niewypłacalność), a drugi etap to model regresyjny oszacowujący wielkość straty, bazując na wynikach klasyfikacji. Wykorzystaj podejścia ensemble, aby łączyć predykcje z różnych modeli, co jest sprawdzoną strategią konkursową.
+
+Na podstawie powyższych wytycznych zmodyfikuj i rozbuduj obecne pliki gc1.py oraz gc2.py, aby pipeline był bardziej elastyczny, odporny na overfitting, a jego wyniki lepiej odzwierciedlały rzeczywiste ryzyko kredytowe. Każdy etap przetwarzania powinien być odpowiednio udokumentowany i wizualizowany, co pozwoli na dalszą analizę i diagnostykę.

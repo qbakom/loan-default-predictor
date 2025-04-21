@@ -247,3 +247,20 @@ Z doświadczeń wyniesionych z projektu ustaliłem kilka kluczowych zasad do prz
 
 - Zawsze projektować potoki danych z myślą o środowisku produkcyjnym
 - Starannie testować zachowanie potoku dla różnych typów danych wejściowych
+
+
+### Fourier Transformer
+
+Models ListOps Text Retrieval Image Pathfinder Avg.
+Transformer (Vaswani et al., 2017) 36.37 64.27 57.46 42.44 71.40 54.39
+Longformer (Beltagy et al., 2020) 35.63 62.85 56.89 42.22 69.71 53.46
+Linformer (Wang et al., 2020) 35.70 53.94 52.27 38.56 76.34 51.36
+Reformer (Kitaev et al., 2020) 37.27 56.10 53.40 38.07 68.50 50.67
+Synthesizer (Tay et al., 2021a) 36.99 61.68 54.67 41.61 69.45 52.88
+BigBird (Zaheer et al., 2020) 36.05 64.02 59.29 40.83 74.87 55.01
+Performer (Choromanski et al., 2020a) 18.01 65.40 53.82 42.77 77.50 51.41
+FNet (Lee-Thorp et al., 2021) 35.55 65.11 59.61 38.67 77.80 55.30
+Nyström (Xiong et al., 2021) 37.15 65.52 79.56 41.58 70.94 58.95
+Luna-256 (Ma et al., 2021) 37.25 64.57 79.29 47.38 77.32 61.24
+FSAT (Zhuang et al., 2022) 46.85 65.95 81.11 49.97 77.32 64.24
+Fourier Transformer (ours) 40.73 75.02 85.35 53.17 83.43 67.54

@@ -1,0 +1,22 @@
+With these changes, the script now integrates both advanced diagnostics and AutoML. Here's what the modifications do:
+
+AutoML Integration:
+
+Added command line arguments for AutoML: --use_automl, --automl_backend, and --automl_time_budget
+Added a new branch in the main function that runs AutoML if requested, using the advanced_diagnostics.py module
+Creates a pipeline incorporating the AutoML model with preprocessing steps
+Advanced Diagnostics:
+
+Added a --advanced_diagnostics command line option
+Integrated the diagnostic capabilities from advanced_diagnostics.py when enabled
+Runs Yellowbrick visualizations and SHAP analysis on the trained model
+Saves all diagnostics to a subdirectory in the output directory
+Extended PCA Visualization:
+
+Enhanced the PCA visualization to show classes by color
+Added a colorbar for better interpretation
+Better Pipeline Management:
+
+Created a unified approach to handle the final pipeline regardless of whether it's standard, ensemble, or AutoML
+Improved error handling when modules aren't available
+These changes make the script more powerful and flexible, allowing users to choose between standard models, ensembles, or AutoML approaches, and to get advanced diagnostic information about model performance and feature importance.
