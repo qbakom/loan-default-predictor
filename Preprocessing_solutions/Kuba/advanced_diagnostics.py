@@ -9,6 +9,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import logging
 import os
+from typing import TYPE_CHECKING
 
 logger = logging.getLogger(__name__)
 
@@ -37,13 +38,6 @@ except ImportError:
     logger.warning("TPOT not available. AutoML functionality will be disabled.")
     HAS_TPOT = False
 
-try:
-    import autosklearn.classification
-    HAS_AUTOSKLEARN = True
-except ImportError:
-    logger.warning("auto-sklearn not available. AutoML functionality will be limited.")
-    HAS_AUTOSKLEARN = False
-
 class ModelDiagnostics:
     """
     Class for visualizing and diagnosing machine learning models.
@@ -53,7 +47,7 @@ class ModelDiagnostics:
         """
         Initialize the diagnostics class.
         
-        Args:
+        Args
             output_dir (str): Directory to save visualizations
         """
         self.output_dir = output_dir
@@ -166,9 +160,9 @@ class ModelDiagnostics:
         except Exception as e:
             logger.error(f"Error in SHAP analysis: {str(e)}")
     
-    def auto_ml_optimization(self, X_train, y_train, X_test, y_test, time_budget=60, use_tpot=True):
+    def auto_ml_optimization(self, X_train, y_train, X_test, y_test, time_budget=60):
         """
-        Use AutoML to find the best model.
+        Use TPOT AutoML to find the best model.
         
         Args:
             X_train: Training features
@@ -176,12 +170,11 @@ class ModelDiagnostics:
             X_test: Test features
             y_test: Test target
             time_budget (int): Time budget in minutes
-            use_tpot (bool): Whether to use TPOT or auto-sklearn
             
         Returns:
-            object: Trained AutoML model
+            object: Trained TPOT model or None if TPOT is unavailable
         """
-        if use_tpot and HAS_TPOT:
+        if HAS_TPOT:
             logger.info(f"Starting TPOT optimization with {time_budget} minute time budget")
             automl = TPOTClassifier(
                 generations=5,
@@ -202,27 +195,6 @@ class ModelDiagnostics:
             logger.info(f"TPOT pipeline exported to {os.path.join(self.output_dir, 'tpot_pipeline.py')}")
             
             return automl
-        elif HAS_AUTOSKLEARN:
-            logger.info(f"Starting auto-sklearn optimization with {time_budget} minute time budget")
-            automl = autosklearn.classification.AutoSklearnClassifier(
-                time_left_for_this_task=time_budget * 60,  # convert to seconds
-                per_run_time_limit=time_budget * 30,  # 30% of total time per run
-                tmp_folder=os.path.join(self.output_dir, "autosklearn_tmp"),
-                output_folder=os.path.join(self.output_dir, "autosklearn_out")
-            )
-            automl.fit(X_train, y_train)
-            
-            # Evaluate
-            score = automl.score(X_test, y_test)
-            logger.info(f"auto-sklearn optimization completed. Test score: {score:.4f}")
-            
-            # Show models
-            logger.info("auto-sklearn leaderboard:")
-            for i, (model, perf) in enumerate(automl.leaderboard().iterrows()):
-                if i < 5:  # Show top 5 models
-                    logger.info(f"{i+1}. {perf['model_id']}: {perf['cost']:.4f}")
-            
-            return automl
         else:
-            logger.warning("No AutoML libraries available. Skipping AutoML optimization.")
+            logger.warning("TPOT is not available. Skipping AutoML optimization.")
             return None
