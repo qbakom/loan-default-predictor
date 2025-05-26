@@ -1,44 +1,81 @@
-# Projekt - Wstęp do analizy danych i uczenia maszynowego
+# 🏦 Loan Default Prediction Pipeline
 
-[Źródło danych](https://www.kaggle.com/datasets/yasserh/loan-default-dataset)
+A production-ready machine learning pipeline for predicting loan defaults, built with scikit-learn.
 
-## Zespoły w 2 etapie.
-### Zespół 1
+## 📋 Table of Contents
 
----> Michał Glinka
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Performance](#performance)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technical Implementation](#technical-implementation)
+- [Lessons Learned](#lessons-learned)
 
----> Jakub Komosa
+## 🚀 Overview
 
----> Emilia Latko
+This project implements an end-to-end solution for predicting whether a loan applicant will default on their loan. The pipeline handles data preprocessing, custom feature engineering, model training, and evaluation - all packaged into a reusable scikit-learn pipeline.
 
-### Zespół 2
+## ✨ Key Features
 
----> Kuba Hałaczkiewicz
+- **Robust preprocessing** for numerical and categorical data
+- **Custom feature engineering** including income-to-loan ratio calculation
+- **Advanced class imbalance handling** using SMOTE
+- **Hyperparameter optimization** for model performance
+- **Production-ready design** with model serialization/deserialization
+- **Comprehensive metrics** (accuracy, precision, recall, F1-score)
 
----> Joanna Aszklar
+## 📊 Performance
 
----> Martyna Stankiewicz
+The final model achieves strong predictive performance:
 
-### Zespół 3
+- High precision in identifying potential defaulters
+- Balanced handling of the class imbalance problem
+- Robust cross-validation results
 
----> Bartek Ząbkowski
+## 🛠️ Installation
 
----> Basia Gawlik
+```bash
+# Clone the repository
+git clone https://github.com/qbakom/loan-default-pipeline.git
+cd loan-default-pipeline
 
----> Jan Szopa
+# Create and activate virtual environment (optional)
+python3 -m venv venv
+source venv/bin/activate
 
-### Zespół 4
----> Kacper Przywara
+# Install dependencies
+pip install -r requirements.txt
+```
 
----> Jakub Rak
+## 🔧 Usage
 
----> Piotr Cymoniuk
+**Train a new model:**
+```bash
+python3 train.py --target_column Status
+```
 
+**Make predictions with a trained model:**
+```bash
+python apply.py --pipeline_path models/pipeline_YYYYMMDD_HHMMSS.joblib \
+                --data_path ../../data/Loan_Default.csv \
+                --target_column Status \
+                --output_path predictions.csv
+```
 
-### Zespół 5
----> Konrad Karpiuk
+## 🔬 Technical Implementation
 
----> Ola Kukuła
+- **Framework:** scikit-learn pipeline architecture
+- **Preprocessing:** Automatic feature type detection, missing value imputation, scaling
+- **Feature Engineering:** Custom transformers extending scikit-learn's BaseEstimator
+- **Model:** Ensemble-based classification with RandomForest
+- **Serialization:** joblib for model persistence
 
----> Michał Morzuch
+## 📝 Lessons Learned
+
+- Ensuring column consistency between training and inference
+- Preventing data leakage in preprocessing steps
+- Importance of pipeline design for production deployments
+- Managing rare classes with synthetic data generation
+
 
